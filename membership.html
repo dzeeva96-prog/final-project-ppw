@@ -1,99 +1,90 @@
 <!DOCTYPE html>
-<html lang="id">
-
+<html lang="id" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amikom Fitness Center | Membership</title>
+    <title>Membership - OLYMPIA GYM</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="index.html">AMIKOM FITNESS</a>
+            <a class="navbar-brand fw-bold fs-4" href="index.html">OLYMPIA GYM</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="classes.html">Classes</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="membership.html">Membership</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link px-3" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="classes.html">Classes</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="membership.html">Membership</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="contact.html">Contact</a></li>
                 </ul>
-                <button class="btn btn-outline-warning ms-lg-3 mt-2 mt-lg-0" id="darkModeToggle">Dark Mode</button>
+                <button class="btn btn-outline-light px-4 rounded-pill" id="darkModeToggle">Dark Mode</button>
             </div>
         </div>
     </nav>
 
-    <main class="container my-5">
-        <h2 class="text-center mb-5">Pilihan Paket Member</h2>
-        <div class="row text-center g-4">
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header bg-secondary text-white py-3">
-                        <h4 class="my-0 fw-normal">Harian</h4>
-                    </div>
-                    <div class="card-body d-flex flex-column">
-                        <h1 class="card-title pricing-card-title">Rp35rb<small class="text-muted fw-light">/hari</small>
-                        </h1>
-                        <ul class="list-unstyled mt-3 mb-4 text-start mx-auto">
-                            <li>✔️ Akses semua alat</li>
-                            <li>✔️ Loker gratis</li>
-                            <li>❌ Akses kelas</li>
-                        </ul>
-                        <a href="contact.html" class="w-100 btn btn-lg btn-outline-primary mt-auto">Daftar Sekarang</a>
-                    </div>
+    <main class="container py-5 my-4">
+        <div class="text-center mb-5 pb-3">
+            <h1 class="display-5 fw-bold">Pilih Paket Anda</h1>
+            <p class="text-secondary mt-3">Investasi terbaik adalah untuk kesehatan diri sendiri.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center text-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 p-4 p-xl-5">
+                    <h4 class="fw-bold mb-3 text-secondary">Basic</h4>
+                    <h2 class="display-6 fw-bold mb-4">Rp 200rb<span class="fs-6 text-muted fw-normal">/bln</span></h2>
+                    <ul class="list-unstyled mb-5 text-start mx-auto" style="max-width: 200px;">
+                        <li class="mb-3">✓ Akses Gym Area</li>
+                        <li class="mb-3">✓ Loker Standar</li>
+                        <li class="mb-3">✓ Kamar Mandi</li>
+                        <li class="text-muted text-decoration-line-through">Akses Kelas</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline-dark mt-auto py-3 rounded-pill w-100">Daftar Basic</a>
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card shadow border-primary h-100">
-                    <div class="card-header bg-primary text-white py-3">
-                        <h4 class="my-0 fw-normal">Bulanan (Populer)</h4>
-                    </div>
-                    <div class="card-body d-flex flex-column">
-                        <h1 class="card-title pricing-card-title">Rp250rb<small class="text-muted fw-light">/bln</small>
-                        </h1>
-                        <ul class="list-unstyled mt-3 mb-4 text-start mx-auto">
-                            <li>✔️ Akses semua alat</li>
-                            <li>✔️ Loker & handuk</li>
-                            <li>✔️ Gratis 2x kelas</li>
-                        </ul>
-                        <a href="contact.html" class="w-100 btn btn-lg btn-primary mt-auto">Daftar Sekarang</a>
-                    </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 p-4 p-xl-5 position-relative" style="border: 2px solid #f1c40f;">
+                    <span class="badge bg-warning text-dark position-absolute top-0 start-50 translate-middle px-3 py-2 rounded-pill fw-bold">Paling Populer</span>
+                    <h4 class="fw-bold mb-3 text-warning">Pro</h4>
+                    <h2 class="display-6 fw-bold mb-4">Rp 350rb<span class="fs-6 text-muted fw-normal">/bln</span></h2>
+                    <ul class="list-unstyled mb-5 text-start mx-auto" style="max-width: 200px;">
+                        <li class="mb-3">✓ Semua Akses Basic</li>
+                        <li class="mb-3">✓ 4x Sesi Kelas/Bulan</li>
+                        <li class="mb-3">✓ Handuk Gratis</li>
+                        <li class="mb-3">✓ Konsultasi Pelatih</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-warning mt-auto py-3 rounded-pill w-100 fw-bold">Daftar Pro</a>
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100">
-                    <div class="card-header bg-dark text-white py-3">
-                        <h4 class="my-0 fw-normal">Tahunan</h4>
-                    </div>
-                    <div class="card-body d-flex flex-column">
-                        <h1 class="card-title pricing-card-title">Rp2.4jt<small class="text-muted fw-light">/thn</small>
-                        </h1>
-                        <ul class="list-unstyled mt-3 mb-4 text-start mx-auto">
-                            <li>✔️ Akses tanpa batas</li>
-                            <li>✔️ Fasilitas VIP</li>
-                            <li>✔️ Bebas semua kelas</li>
-                        </ul>
-                        <a href="contact.html" class="w-100 btn btn-lg btn-outline-dark mt-auto">Daftar Sekarang</a>
-                    </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 p-4 p-xl-5">
+                    <h4 class="fw-bold mb-3 text-secondary">VIP</h4>
+                    <h2 class="display-6 fw-bold mb-4">Rp 500rb<span class="fs-6 text-muted fw-normal">/bln</span></h2>
+                    <ul class="list-unstyled mb-5 text-start mx-auto" style="max-width: 200px;">
+                        <li class="mb-3">✓ Akses Tanpa Batas</li>
+                        <li class="mb-3">✓ Bebas Semua Kelas</li>
+                        <li class="mb-3">✓ Personal Trainer (2x)</li>
+                        <li class="mb-3">✓ Akses Sauna</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-dark mt-auto py-3 rounded-pill w-100">Daftar VIP</a>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-dark text-white text-center py-4 mt-5">
-        <p class="mb-0">&copy; 2026 Final Project PPW. Universitas Amikom Yogyakarta.</p>
+    <footer class="bg-dark text-white text-center py-4 mt-auto">
+        <p class="mb-0 text-white-50">&copy; 2026 OLYMPIA GYM. All Rights Reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
-
 </html>
