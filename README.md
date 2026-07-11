@@ -6,10 +6,10 @@ Website ini merupakan prototipe dari *company profile* dan layanan untuk sebuah 
 
 ## 👥 Informasi Kelompok
 * **Anggota Kelompok :**
-  1. dzeeva96-prog
-  2. dezekiel-kdn
-  3. edp1107
-  4. n.brian
+  1. Irfan Dwi luthfi (25.12.3658)
+  2. Dennis Ezekiel Sinaga (25.12.3662)
+  3. Evan Dwi Pamungkas (25.12.3656)
+  4. Nugroho Brian Wicaksono (25.12.3665)
 
 ## 🛠️ Teknologi yang Digunakan
 Sesuai dengan ketentuan Final Project, website ini dikembangkan tanpa *template* instan dan menggunakan:
