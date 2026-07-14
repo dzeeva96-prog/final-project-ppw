@@ -29,62 +29,243 @@
     </nav>
 
     <main class="container py-5 my-4">
+        <!-- Alert Sukses Utama (Muncul di Luar Modal) -->
+        <div id="alertUtama" class="mb-4"></div>
+
         <div class="text-center mb-5 pb-3">
             <h1 class="display-5 fw-bold">Pilih Paket Anda</h1>
             <p class="text-secondary mt-3">Investasi terbaik adalah untuk kesehatan diri sendiri.</p>
         </div>
 
-        <div class="row g-4 justify-content-center text-center">
+        <div class="row g-4 justify-content-center text-center mb-5">
+            <!-- Paket Basic -->
             <div class="col-lg-4 col-md-6">
                 <div class="card h-100 p-4 p-xl-5">
                     <h4 class="fw-bold mb-3 text-secondary">Basic</h4>
-                    <h2 class="display-6 fw-bold mb-4">Rp 200rb<span class="fs-6 text-muted fw-normal">/bln</span></h2>
+                    <h2 class="display-6 fw-bold mb-4">Rp 200.000<span class="fs-6 text-muted fw-normal">/bln</span></h2>
                     <ul class="list-unstyled mb-5 text-start mx-auto" style="max-width: 200px;">
                         <li class="mb-3">✓ Akses Gym Area</li>
                         <li class="mb-3">✓ Loker Standar</li>
                         <li class="mb-3">✓ Kamar Mandi</li>
                         <li class="text-muted text-decoration-line-through">Akses Kelas</li>
                     </ul>
-                    <a href="contact.html" class="btn btn-outline-dark mt-auto py-3 rounded-pill w-100">Daftar Basic</a>
+                    <button onclick="bukaModalPembayaran('Basic', 200000)" class="btn btn-outline-dark mt-auto py-3 rounded-pill w-100">Daftar Basic</button>
                 </div>
             </div>
 
+            <!-- Paket Pro -->
             <div class="col-lg-4 col-md-6">
                 <div class="card h-100 p-4 p-xl-5 position-relative" style="border: 2px solid #f1c40f;">
                     <span class="badge bg-warning text-dark position-absolute top-0 start-50 translate-middle px-3 py-2 rounded-pill fw-bold">Paling Populer</span>
                     <h4 class="fw-bold mb-3 text-warning">Pro</h4>
-                    <h2 class="display-6 fw-bold mb-4">Rp 350rb<span class="fs-6 text-muted fw-normal">/bln</span></h2>
+                    <h2 class="display-6 fw-bold mb-4">Rp 350.000<span class="fs-6 text-muted fw-normal">/bln</span></h2>
                     <ul class="list-unstyled mb-5 text-start mx-auto" style="max-width: 200px;">
                         <li class="mb-3">✓ Semua Akses Basic</li>
                         <li class="mb-3">✓ 4x Sesi Kelas/Bulan</li>
                         <li class="mb-3">✓ Handuk Gratis</li>
                         <li class="mb-3">✓ Konsultasi Pelatih</li>
                     </ul>
-                    <a href="contact.html" class="btn btn-warning mt-auto py-3 rounded-pill w-100 fw-bold">Daftar Pro</a>
+                    <button onclick="bukaModalPembayaran('Pro', 350000)" class="btn btn-warning mt-auto py-3 rounded-pill w-100 fw-bold">Daftar Pro</button>
                 </div>
             </div>
 
+            <!-- Paket VIP -->
             <div class="col-lg-4 col-md-6">
                 <div class="card h-100 p-4 p-xl-5">
                     <h4 class="fw-bold mb-3 text-secondary">VIP</h4>
-                    <h2 class="display-6 fw-bold mb-4">Rp 500rb<span class="fs-6 text-muted fw-normal">/bln</span></h2>
+                    <h2 class="display-6 fw-bold mb-4">Rp 500.000<span class="fs-6 text-muted fw-normal">/bln</span></h2>
                     <ul class="list-unstyled mb-5 text-start mx-auto" style="max-width: 200px;">
                         <li class="mb-3">✓ Akses Tanpa Batas</li>
                         <li class="mb-3">✓ Bebas Semua Kelas</li>
                         <li class="mb-3">✓ Personal Trainer (2x)</li>
                         <li class="mb-3">✓ Akses Sauna</li>
                     </ul>
-                    <a href="contact.html" class="btn btn-dark mt-auto py-3 rounded-pill w-100">Daftar VIP</a>
+                    <button onclick="bukaModalPembayaran('VIP', 500000)" class="btn btn-dark mt-auto py-3 rounded-pill w-100">Daftar VIP</button>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-5">
+
+        <!-- Bagian Riwayat Transaksi -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h3 class="fw-bold text-center mb-4">Riwayat Pendaftaran Membership</h3>
+                <div class="table-responsive bg-body-tertiary p-3 rounded shadow-sm">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Nama</th>
+                                <th>No. HP</th>
+                                <th>Paket</th>
+                                <th>Metode</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabelRiwayat">
+                            <tr>
+                                <td colspan="6" class="text-center text-muted py-3" id="noDataText">Belum ada riwayat pendaftaran.</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </main>
+
+    <!-- Modal Form Pendaftaran dan Pembayaran -->
+    <div class="modal fade" id="modalPembayaran" tabindex="-1" aria-labelledby="modalPembayaranLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="modalPembayaranLabel">Formulir Pendaftaran & Pembayaran</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-dark">
+                    <div class="alert alert-info text-center fw-bold">
+                        Paket Dipilih: <span id="textPaket"></span> (<span id="textHarga"></span>)
+                    </div>
+                    
+                    <form id="formCheckout" onsubmit="prosesTransaksi(event)">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="inputNama" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nomor HP / WhatsApp</label>
+                            <input type="number" class="form-control" id="inputHp" placeholder="Contoh: 0812345678" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Alamat Lengkap</label>
+                            <textarea class="form-control" id="inputAlamat" rows="2" placeholder="Masukkan alamat rumah" required></textarea>
+                        </div>
+
+                        <hr>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Metode Pembayaran</label>
+                            <select class="form-select" id="metodeBayar" required>
+                                <option value="" selected disabled>-- Pilih Bank / E-Wallet --</option>
+                                <optgroup label="Transfer Bank">
+                                    <option value="BCA">Transfer Bank BCA</option>
+                                    <option value="BNI">Transfer Bank BNI</option>
+                                    <option value="BRI">Transfer Bank BRI</option>
+                                    <option value="Mandiri">Transfer Bank Mandiri</option>
+                                </optgroup>
+                                <optgroup label="E-Wallet">
+                                    <option value="GoPay">GoPay</option>
+                                    <option value="OVO">OVO</option>
+                                    <option value="Dana">Dana</option>
+                                </optgroup>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Nominal Uang yang Dibayarkan (Rp)</label>
+                            <input type="number" class="form-control" id="jumlahUang" placeholder="Masukkan angka saja" required>
+                            <!-- Alert Error Interaktif (Hanya muncul jika nominal kurang) -->
+                            <div id="statusLogika" class="mt-2"></div>
+                        </div>
+
+                        <div class="modal-footer px-0 pb-0">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-success fw-bold">Konfirmasi Bayar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="bg-dark text-white text-center py-4 mt-auto">
         <p class="mb-0 text-white-50">&copy; 2026 OLYMPIA GYM. All Rights Reserved.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        let hargaPaketGlobal = 0;
+        let namaPaketGlobal = "";
+        let bootstrapModalInstance;
+        let nomorRiwayat = 1;
+
+        function bukaModalPembayaran(namaPaket, hargaPaket) {
+            hargaPaketGlobal = hargaPaket;
+            namaPaketGlobal = namaPaket;
+            document.getElementById('textPaket').innerText = namaPaket;
+            document.getElementById('textHarga').innerText = 'Rp ' + hargaPaket.toLocaleString('id-ID');
+            document.getElementById('formCheckout').reset();
+            document.getElementById('statusLogika').innerHTML = '';
+            
+            var modalEl = document.getElementById('modalPembayaran');
+            bootstrapModalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+            bootstrapModalInstance.show();
+        }
+
+        function prosesTransaksi(event) {
+            event.preventDefault();
+            
+            const uangDibayar = parseInt(document.getElementById('jumlahUang').value);
+            const statusBoxInside = document.getElementById('statusLogika');
+            const alertUtama = document.getElementById('alertUtama');
+            
+            const nama = document.getElementById('inputNama').value;
+            const hp = document.getElementById('inputHp').value;
+            const metode = document.getElementById('metodeBayar').value;
+
+            // 1. LOGIKA ERROR: Uang Kurang (Tetap di dalam modal biar user bisa benerin angka)
+            if (uangDibayar < hargaPaketGlobal) {
+                const kurangnya = hargaPaketGlobal - uangDibayar;
+                statusBoxInside.innerHTML = `
+                    <div class="alert alert-danger mb-0" role="alert">
+                        <strong>Error!</strong> Uang Anda kurang <strong>Rp ${kurangnya.toLocaleString('id-ID')}</strong>. Silakan sesuaikan nominal.
+                    </div>`;
+                return;
+            }
+
+            // 2. LOGIKA SUKSES: Uang Pas atau Lebih (Modal langsung ditutup)
+            bootstrapModalInstance.hide();
+            
+            let teksSukses = `<strong>Pembayaran Sukses!</strong> Terima kasih ${nama}, uang pas. Akun membership Anda segera aktif.`;
+            if (uangDibayar > hargaPaketGlobal) {
+                const kembalian = uangDibayar - hargaPaketGlobal;
+                teksSukses = `<strong>Pembayaran Sukses!</strong> Terima kasih ${nama}. Uang kembalian Anda sebesar <strong>Rp ${kembalian.toLocaleString('id-ID')}</strong> telah diproses.`;
+            }
+
+            // Tampilkan alert utama di luar modal (Halaman Membership)
+            alertUtama.innerHTML = `
+                <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+                    ${teksSukses}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>`;
+
+            // 3. LOGIKA MASUK RIWAYAT (Membuat baris tabel baru secara otomatis)
+            const tabelRiwayat = document.getElementById('tabelRiwayat');
+            const noDataText = document.getElementById('noDataText');
+            
+            // Hapus teks "Belum ada riwayat" kalau ini data pertama
+            if (noDataText) {
+                noDataText.remove();
+            }
+
+            const barisBaru = document.createElement('tr');
+            barisBaru.innerHTML = `
+                <td><strong>${nomorRiwayat++}</strong></td>
+                <td>${nama}</td>
+                <td>${hp}</td>
+                <td><span class="badge bg-secondary">${namaPaketGlobal}</span></td>
+                <td>${metode}</td>
+                <td><span class="badge bg-success">Sukses / Aktif</span></td>
+            `;
+            
+            // Masukkan data baru di posisi paling atas tabel riwayat
+            tabelRiwayat.insertBefore(barisBaru, tabelRiwayat.firstChild);
+
+            // Geser halaman otomatis ke bagian atas agar alert sukses terlihat jelas
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
