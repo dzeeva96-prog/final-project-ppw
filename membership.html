@@ -161,13 +161,6 @@
                             </select>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label fw-bold">Nominal Uang yang Dibayarkan (Rp)</label>
-                            <input type="number" class="form-control" id="jumlahUang" placeholder="Masukkan angka saja" required>
-                            <!-- Alert Error Interaktif (Hanya muncul jika nominal kurang) -->
-                            <div id="statusLogika" class="mt-2"></div>
-                        </div>
-
                         <div class="modal-footer px-0 pb-0">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                             <button type="submit" class="btn btn-success fw-bold">Konfirmasi Bayar</button>
@@ -183,89 +176,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script>
-        let hargaPaketGlobal = 0;
-        let namaPaketGlobal = "";
-        let bootstrapModalInstance;
-        let nomorRiwayat = 1;
-
-        function bukaModalPembayaran(namaPaket, hargaPaket) {
-            hargaPaketGlobal = hargaPaket;
-            namaPaketGlobal = namaPaket;
-            document.getElementById('textPaket').innerText = namaPaket;
-            document.getElementById('textHarga').innerText = 'Rp ' + hargaPaket.toLocaleString('id-ID');
-            document.getElementById('formCheckout').reset();
-            document.getElementById('statusLogika').innerHTML = '';
-            
-            var modalEl = document.getElementById('modalPembayaran');
-            bootstrapModalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
-            bootstrapModalInstance.show();
-        }
-
-        function prosesTransaksi(event) {
-            event.preventDefault();
-            
-            const uangDibayar = parseInt(document.getElementById('jumlahUang').value);
-            const statusBoxInside = document.getElementById('statusLogika');
-            const alertUtama = document.getElementById('alertUtama');
-            
-            const nama = document.getElementById('inputNama').value;
-            const hp = document.getElementById('inputHp').value;
-            const metode = document.getElementById('metodeBayar').value;
-
-            // 1. LOGIKA ERROR: Uang Kurang (Tetap di dalam modal biar user bisa benerin angka)
-            if (uangDibayar < hargaPaketGlobal) {
-                const kurangnya = hargaPaketGlobal - uangDibayar;
-                statusBoxInside.innerHTML = `
-                    <div class="alert alert-danger mb-0" role="alert">
-                        <strong>Error!</strong> Uang Anda kurang <strong>Rp ${kurangnya.toLocaleString('id-ID')}</strong>. Silakan sesuaikan nominal.
-                    </div>`;
-                return;
-            }
-
-            // 2. LOGIKA SUKSES: Uang Pas atau Lebih (Modal langsung ditutup)
-            bootstrapModalInstance.hide();
-            
-            let teksSukses = `<strong>Pembayaran Sukses!</strong> Terima kasih ${nama}, uang pas. Akun membership Anda segera aktif.`;
-            if (uangDibayar > hargaPaketGlobal) {
-                const kembalian = uangDibayar - hargaPaketGlobal;
-                teksSukses = `<strong>Pembayaran Sukses!</strong> Terima kasih ${nama}. Uang kembalian Anda sebesar <strong>Rp ${kembalian.toLocaleString('id-ID')}</strong> telah diproses.`;
-            }
-
-            // Tampilkan alert utama di luar modal (Halaman Membership)
-            alertUtama.innerHTML = `
-                <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
-                    ${teksSukses}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>`;
-
-            // 3. LOGIKA MASUK RIWAYAT (Membuat baris tabel baru secara otomatis)
-            const tabelRiwayat = document.getElementById('tabelRiwayat');
-            const noDataText = document.getElementById('noDataText');
-            
-            // Hapus teks "Belum ada riwayat" kalau ini data pertama
-            if (noDataText) {
-                noDataText.remove();
-            }
-
-            const barisBaru = document.createElement('tr');
-            barisBaru.innerHTML = `
-                <td><strong>${nomorRiwayat++}</strong></td>
-                <td>${nama}</td>
-                <td>${hp}</td>
-                <td><span class="badge bg-secondary">${namaPaketGlobal}</span></td>
-                <td>${metode}</td>
-                <td><span class="badge bg-success">Sukses / Aktif</span></td>
-            `;
-            
-            // Masukkan data baru di posisi paling atas tabel riwayat
-            tabelRiwayat.insertBefore(barisBaru, tabelRiwayat.firstChild);
-
-            // Geser halaman otomatis ke bagian atas agar alert sukses terlihat jelas
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
     <script src="script.js"></script>
 </body>
 </html>

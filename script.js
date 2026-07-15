@@ -81,3 +81,93 @@ if (contactForm) {
         contactForm.reset();
     });
 }
+
+let hargaPaketGlobal = 0;
+let namaPaketGlobal = "";
+let bootstrapModalInstance;
+
+// 1. Siapkan "Laci Penyimpanan" (Array) untuk Riwayat
+let riwayatTransaksi = JSON.parse(localStorage.getItem('riwayatGYM')) || [];
+
+function bukaModalPembayaran(namaPaket, hargaPaket) {
+    hargaPaketGlobal = hargaPaket;
+    namaPaketGlobal = namaPaket;
+    document.getElementById('textPaket').innerText = namaPaket;
+    document.getElementById('textHarga').innerText = 'Rp ' + hargaPaket.toLocaleString('id-ID');
+    document.getElementById('formCheckout').reset();
+    
+    var modalEl = document.getElementById('modalPembayaran');
+    bootstrapModalInstance = bootstrap.Modal.getOrCreateInstance(modalEl);
+    bootstrapModalInstance.show();
+}
+
+// 2. Fungsi untuk menampilkan data dari Laci ke Tabel
+function tampilkanRiwayat() {
+    const tabelRiwayat = document.getElementById('tabelRiwayat');
+    
+    // Kosongkan tabel dulu agar bersih
+    tabelRiwayat.innerHTML = '';
+    
+    // Cek apakah laci penyimpanan data kosong?
+    if (riwayatTransaksi.length === 0) {
+        // Jika kosong, buat ulang baris "Belum ada riwayat"
+        tabelRiwayat.innerHTML = `
+            <tr id="noDataText">
+                <td colspan="6" class="text-center py-4 text-muted">Belum ada riwayat pendaftaran.</td>
+            </tr>
+        `;
+    } else {
+        // Jika ada isinya, susun baris datanya
+        riwayatTransaksi.forEach((data, index) => {
+            const barisBaru = document.createElement('tr');
+            barisBaru.innerHTML = `
+                <td><strong>${index + 1}</strong></td>
+                <td>${data.nama}</td>
+                <td>${data.hp}</td>
+                <td><span class="badge bg-secondary">${data.paket}</span></td>
+                <td>${data.metode}</td>
+                <td><span class="badge bg-success">Sukses / Aktif</span></td>
+            `;
+            // Sisipkan di posisi paling atas
+            tabelRiwayat.insertBefore(barisBaru, tabelRiwayat.firstChild);
+        });
+    }
+}
+
+// 3. Panggil fungsi tampilkan saat halaman baru saja dibuka
+document.addEventListener('DOMContentLoaded', tampilkanRiwayat);
+
+function prosesTransaksi(event) {
+    event.preventDefault();
+    
+    const alertUtama = document.getElementById('alertUtama');
+    const nama = document.getElementById('inputNama').value;
+    const hp = document.getElementById('inputHp').value;
+    const metode = document.getElementById('metodeBayar').value;
+
+    bootstrapModalInstance.hide();
+    
+    let teksSukses = `<strong>Pembayaran Sukses!</strong> Terima kasih ${nama}. Akun membership Anda untuk paket ${namaPaketGlobal} segera aktif.`;
+
+    alertUtama.innerHTML = `
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            ${teksSukses}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+
+    // 4. Simpan Data Baru ke dalam Laci
+    const dataBaru = {
+        nama: nama,
+        hp: hp,
+        paket: namaPaketGlobal,
+        metode: metode
+    };
+    
+    riwayatTransaksi.push(dataBaru); // Masukkan ke array
+    localStorage.setItem('riwayatGYM', JSON.stringify(riwayatTransaksi)); // Simpan permanen di browser
+    
+    // 5. Perbarui tampilan tabel
+    tampilkanRiwayat();
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
