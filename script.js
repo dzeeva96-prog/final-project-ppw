@@ -85,8 +85,6 @@ if (contactForm) {
 let hargaPaketGlobal = 0;
 let namaPaketGlobal = "";
 let bootstrapModalInstance;
-
-// 1. Siapkan "Laci Penyimpanan" (Array) untuk Riwayat
 let riwayatTransaksi = JSON.parse(localStorage.getItem('riwayatGYM')) || [];
 
 function bukaModalPembayaran(namaPaket, hargaPaket) {
@@ -101,23 +99,18 @@ function bukaModalPembayaran(namaPaket, hargaPaket) {
     bootstrapModalInstance.show();
 }
 
-// 2. Fungsi untuk menampilkan data dari Laci ke Tabel
 function tampilkanRiwayat() {
     const tabelRiwayat = document.getElementById('tabelRiwayat');
     
-    // Kosongkan tabel dulu agar bersih
     tabelRiwayat.innerHTML = '';
     
-    // Cek apakah laci penyimpanan data kosong?
     if (riwayatTransaksi.length === 0) {
-        // Jika kosong, buat ulang baris "Belum ada riwayat"
         tabelRiwayat.innerHTML = `
             <tr id="noDataText">
                 <td colspan="6" class="text-center py-4 text-muted">Belum ada riwayat pendaftaran.</td>
             </tr>
         `;
     } else {
-        // Jika ada isinya, susun baris datanya
         riwayatTransaksi.forEach((data, index) => {
             const barisBaru = document.createElement('tr');
             barisBaru.innerHTML = `
@@ -128,13 +121,11 @@ function tampilkanRiwayat() {
                 <td>${data.metode}</td>
                 <td><span class="badge bg-success">Sukses / Aktif</span></td>
             `;
-            // Sisipkan di posisi paling atas
             tabelRiwayat.insertBefore(barisBaru, tabelRiwayat.firstChild);
         });
     }
 }
 
-// 3. Panggil fungsi tampilkan saat halaman baru saja dibuka
 document.addEventListener('DOMContentLoaded', tampilkanRiwayat);
 
 function prosesTransaksi(event) {
@@ -155,7 +146,6 @@ function prosesTransaksi(event) {
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>`;
 
-    // 4. Simpan Data Baru ke dalam Laci
     const dataBaru = {
         nama: nama,
         hp: hp,
@@ -163,10 +153,9 @@ function prosesTransaksi(event) {
         metode: metode
     };
     
-    riwayatTransaksi.push(dataBaru); // Masukkan ke array
-    localStorage.setItem('riwayatGYM', JSON.stringify(riwayatTransaksi)); // Simpan permanen di browser
+    riwayatTransaksi.push(dataBaru); 
+    localStorage.setItem('riwayatGYM', JSON.stringify(riwayatTransaksi)); 
     
-    // 5. Perbarui tampilan tabel
     tampilkanRiwayat();
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
