@@ -1,95 +1,116 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-bs-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beranda - Fitness & Gym</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - OLYMPIA GYM</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header / Navigation -->
-  <header>
-    <div class="container navbar">
-      <div class="logo">
-        <h2>GYM<span>POWER</span></h2>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="classes.html">Classes</a></li>
-          <li><a href="membership.html">Membership</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <!-- Penambahan Menu Register -->
-          <li><a href="#" class="btn-register">Register</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Hero Banner -->
-  <section class="hero">
-    <div class="container hero-content">
-      <h1>Wujudkan Bentuk Tubuh Impianmu</h1>
-      <p>Bergabunglah bersama kami dan mulailah pola hidup sehat dengan fasilitas serta instruktur profesional.</p>
-      <a href="membership.html" class="btn-primary">Gabung Sekarang</a>
-    </div>
-  </section>
-
-  <!-- Section Beranda: Kotak Layanan / Fasilitas (Rapi & Rata Tengah) -->
-  <section class="cards-section">
-    <div class="container">
-      <h2 class="section-title">Program & Fasilitas Unggulan</h2>
-      <p class="section-subtitle">Pilih program pelatihan terbaik yang disesuaikan dengan kebutuhan kamu</p>
-
-      <!-- Grid Tempat Kotak/Card -->
-      <div class="card-grid">
-
-        <!-- Kotak 1 -->
-        <div class="card">
-          <div class="card-img">
-            <img src="asset/images.jpg" alt="Personal Training">
-          </div>
-          <div class="card-body">
-            <h3>Personal Training</h3>
-            <p>Dapatkan panduan latihan secara langsung dari instruktur bersertifikat untuk hasil yang optimal.</p>
-          </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-4" href="index.html">OLYMPIA GYM</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link px-3 active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="classes.html">Classes</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="membership.html">Membership</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="contact.html">Contact</a></li>
+                    <!-- Penambahan Menu Register -->
+                    <li class="nav-item"><a class="nav-link px-3 text-warning fw-semibold" href="register.html">Register</a></li>
+                </ul>
+                <button class="btn btn-outline-light px-4 rounded-pill" id="darkModeToggle">Dark Mode</button>
+            </div>
         </div>
+    </nav>
 
-        <!-- Kotak 2 -->
-        <div class="card">
-          <div class="card-img">
-            <img src="asset/images.jpg" alt="Classes & Yoga">
-          </div>
-          <div class="card-body">
-            <h3>Kelas & Yoga</h3>
-            <p>Ikuti berbagai pilihan kelas seru mulai dari Yoga, Zumba, hingga Cardio untuk menjaga kebugaran.</p>
-          </div>
-        </div>
+    <main>
+        <!-- Hero Section dengan Background Gambar -->
+        <section class="container-fluid text-center py-5 my-4 text-white rounded-4 shadow-lg" 
+                 style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('asset/images.jpg') center/cover no-repeat; max-width: 95%;">
+            <div class="py-5 my-4">
+                <h1 class="display-3 fw-bold mb-4 text-white">Bentuk Versi Terbaik Dirimu</h1>
+                <p class="lead mb-5 mx-auto text-light" style="max-width: 600px;">
+                    Fasilitas kebugaran premium dengan peralatan modern, pelatih profesional, dan lingkungan yang mendukung transformasi fisik Anda.
+                </p>
+                <a href="membership.html" class="btn btn-warning btn-lg px-5 py-3 rounded-pill fw-bold">Mulai Sekarang</a>
+            </div>
+        </section>
 
-        <!-- Kotak 3 -->
-        <div class="card">
-          <div class="card-img">
-            <img src="asset/images.jpg" alt="Modern Equipment">
-          </div>
-          <div class="card-body">
-            <h3>Peralatan Modern</h3>
-            <p>Latihan nyaman dengan dukungan fasilitas dan peralatan gym yang lengkap serta terawat.</p>
-          </div>
-        </div>
+        <!-- Section Kotak / Cards Beranda (Diperbaiki: Simetris, Rata Tengah, & Rapi) -->
+        <section class="container my-5 py-4">
+            <h2 class="fw-bold text-center mb-2">Program & Fasilitas Unggulan</h2>
+            <p class="text-center text-secondary mb-5">Pilihan terbaik untuk mendukung transformasi fisik kamu</p>
+            
+            <div class="row g-4 justify-content-center">
+                <!-- Card 1 -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden w-100">
+                        <img src="asset/images.jpg" class="card-img-top" alt="Personal Trainer" style="height: 200px; object-fit: cover;">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <h4 class="card-title fw-bold mb-3">Personal Trainer</h4>
+                            <p class="card-text text-secondary flex-grow-1">Dapatkan bimbingan intensif dari instruktur profesional bersertifikat untuk hasil yang terukur dan aman.</p>
+                        </div>
+                    </div>
+                </div>
 
-      </div>
-    </div>
-  </section>
+                <!-- Card 2 -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden w-100">
+                        <img src="asset/images.jpg" class="card-img-top" alt="Peralatan Modern" style="height: 200px; object-fit: cover;">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <h4 class="card-title fw-bold mb-3">Peralatan Modern</h4>
+                            <p class="card-text text-secondary flex-grow-1">Nikmati beragam peralatan kebugaran standar internasional yang terawat untuk efisiensi latihan Anda.</p>
+                        </div>
+                    </div>
+                </div>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container footer-content">
-      <p>&copy; 2026 GYMPOWER. Final Project PPW.</p>
-    </div>
-  </footer>
+                <!-- Card 3 -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex align-items-stretch">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden w-100">
+                        <img src="asset/images.jpg" class="card-img-top" alt="Kelas Kebugaran" style="height: 200px; object-fit: cover;">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <h4 class="card-title fw-bold mb-3">Kelas Kebugaran</h4>
+                            <p class="card-text text-secondary flex-grow-1">Ikuti berbagai variasi kelas seru seperti Yoga, HIIT, dan Zumba bersama komunitas yang suportif.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <script src="script.js"></script>
+        <!-- Kalkulator BMI -->
+        <section class="container mb-5 pb-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card p-4 p-md-5 border-0 shadow-sm rounded-4">
+                        <h3 class="fw-bold mb-4 text-center">Kalkulator BMI</h3>
+                        <div class="mb-3">
+                            <label class="form-label text-secondary">Berat Badan (kg)</label>
+                            <input type="number" id="berat" class="form-control form-control-lg bg-light border-0" placeholder="Contoh: 70">
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label text-secondary">Tinggi Badan (cm)</label>
+                            <input type="number" id="tinggi" class="form-control form-control-lg bg-light border-0" placeholder="Contoh: 175">
+                        </div>
+                        <button onclick="hitungBMI()" class="btn btn-warning btn-lg w-100 fw-bold">Hitung BMI</button>
+                        <div id="hasilBMI" class="mt-4 text-center fs-5"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4 mt-auto">
+        <p class="mb-0 text-white-50">&copy; 2026 OLYMPIA GYM. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
